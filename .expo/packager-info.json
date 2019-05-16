@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19003,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19004,
+  "packagerPort": 19005,
+  "packagerPid": 13519,
+  "expoServerNgrokUrl": "https://6h-fbp.anonymous.rip-client.exp.direct",
+  "packagerNgrokUrl": "https://packager.6h-fbp.anonymous.rip-client.exp.direct",
+  "ngrokPid": 13590
 }
