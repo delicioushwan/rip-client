@@ -1,29 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
-import AddToiletView from './AddToileView'
-import AddCommentView from './AddCommentView'
-import MainMap from './Componets/MainMap'
+import { StyleSheet, View } from 'react-native';
+import DrawerNavigator from './navigation/DrawerNavigator'
+
+
 
 export default class App extends React.Component {
-
-render() {
-  return (
-    <View style={styles.container}>
-      <Text>Don't Touch me please :(</Text>
-      <AddToiletView/>
-      {/* <AddCommentView/> */}
-      {/* <MainMap/> */}
-    </View>
-  );
+  render() {
+    return (
+      <View style = {styles.container}>
+        <DrawerNavigator />
+      </View>
+    );
+  }
 }
-}
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

@@ -5,21 +5,19 @@ import { MapView } from 'expo';
 
 
 const ToiletSpot = (props) => {
-    // const latitude = props.toiletLocation.lat
-    // const longitude = props.toiletLocation.lon
-
-console.log(Number(props.toiletLocation.lat))
-console.log(Number(props.toiletLocation.lon))
+    const latitude = Number(props.toiletLocation.lat)
+    const longitude = Number(props.toiletLocation.lon)
+    
     return(
         <MapView.Marker
             coordinate={
                 { 
-                    latitude:Number(props.toiletLocation.lat),
-                    longitude:Number(props.toiletLocation.lon),
+                    latitude:latitude,
+                    longitude:longitude,
                 }
             }
             title="똥통"
-            description="Heaven!"
+            description={props.toiletLocation.description}
         >
         <Image source={require('../assets/toilet.png')}/>
         </MapView.Marker>

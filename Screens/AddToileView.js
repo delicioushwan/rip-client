@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
-import AddToiletHeadLine from './AddToiletHeadLine'
-import ToiletStarRating from './starRating'
+import AddToiletHeadLine from '../componets/AddToiletHeadLine'
+import ToiletStarRating from '../componets/starRating'
 class AddToiletView extends Component {
  
     constructor(props) {

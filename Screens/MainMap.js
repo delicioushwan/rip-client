@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, Dimensions, Image } from 'react-native';
 import { Constants, MapView, Location, Permissions } from 'expo';
 import ToiletSpot from './ToiletSpot';
-import Menu from './Toolbar/Menu'
+import MenuButton from '../componets/MenuButton'
+import AddButton from '../componets/AddButton'
+
 let { width, height } = Dimensions.get('window')
 
 
@@ -47,16 +49,16 @@ export default class MainMap extends Component {
       );
   };
   render() {
-
     return (
         <View style={styles.container}>
+        <MenuButton navigation={this.props.navigation} />
             <MapView
             style={{ alignSelf: 'stretch', height: '70%' }}
             region={
                 { 
                 latitude: this.state.location.coords.latitude,
                 longitude: this.state.location.coords.longitude,
-                latitudeDelta: 0.005, longitudeDelta: 0.005*(width/height)
+                latitudeDelta: 0.01, longitudeDelta: 0.01*(width/height)
                 }
             }
             >
@@ -74,10 +76,10 @@ export default class MainMap extends Component {
             )}
             </MapView>
 
-            <Text>
+            {/* <Text>
             Location: {this.state.locationResult}
-            </Text>
-            
+            </Text> */}
+            <AddButton navigation={this.props.navigation} />
             <Button
             onPress={this._handleMapRegionChange}
             title="Where I am"

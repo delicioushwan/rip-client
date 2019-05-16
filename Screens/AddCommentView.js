@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
-import AddCommentHeadLine from './AddCommentHeadLine'
-import ToiletStarRating from './starRating'
+import AddCommentHeadLine from '../componets/AddCommentHeadLine'
+import ToiletStarRating from '../componets/starRating'
 class AddCommentView extends Component {
  
     constructor(props) {
