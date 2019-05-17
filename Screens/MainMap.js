@@ -41,6 +41,7 @@ export default class MainMap extends Component {
       });
     }
 
+
     let location = await Location.getCurrentPositionAsync({});
       this.setState(
         {
@@ -50,6 +51,7 @@ export default class MainMap extends Component {
       );
   };
   render() {
+    console.log(this.state)
     return (
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />
@@ -75,7 +77,6 @@ export default class MainMap extends Component {
                 return <ToiletSpot key ={index} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
               }
             )}
-
             </MapView>
             <View style={
               {
@@ -96,6 +97,7 @@ export default class MainMap extends Component {
                 size={36.22}
               />
               <AddButton
+                location={this.state.location.coords}
                 navigation={this.props.navigation} />
             </View>
         </View>

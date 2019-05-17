@@ -5,7 +5,6 @@ import { createDrawerNavigator, createAppContainer, createStackNavigator, create
 import MainMap from '../Screens/MainMap';
 import SignIn from '../Screens/Signin'
 import SignUp from '../Screens/Signup'
-
 import AddToilet from '../Screens/AddToileView'
 import AddComment from '../Screens/AddCommentView'
 
