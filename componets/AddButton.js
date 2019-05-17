@@ -11,7 +11,8 @@ export default class AddButton extends React.Component{
                 size={32}
                 // style={styles.menuIcon}
                 onPress={()=> {
-                    console.log('works')}
+                    console.log(this.props.navigation)
+                    return this.props.navigation.navigate('AddToilet')}
                 }
             />
         )
