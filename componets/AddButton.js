@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default class AddButton extends React.Component{
@@ -9,21 +8,10 @@ export default class AddButton extends React.Component{
                 name="md-sunny"
                 color="#000000"
                 size={32}
-                // style={styles.menuIcon}
                 onPress={()=> {
-                    console.log(this.props.navigation)
-                    return this.props.navigation.navigate('AddToilet')}
+                    return this.props.navigation.navigate('AddToilet',{'location' : this.props.location})}
                 }
             />
         )
     }
 }
-
-const styles = StyleSheet.create({
-    menuIcon: {
-        zIndex: 9,
-        position: 'absolute',
-        bottom: 30,
-        left: 0,
-    }  
-})

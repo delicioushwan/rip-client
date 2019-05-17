@@ -21,7 +21,17 @@ export default class SignUp extends React.Component {
     render(){
 
         const submit = () => {
-            return fetch()
+            fetch('http://13.124.90.132:3001/',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({address :state.locationData}),
+            })
+            .then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => { throw(error) });
         }
 
         const errorMessages = () => {

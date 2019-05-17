@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, Text ,TouchableOpacity, KeyboardAvoidingVi
 import BackButton from '../componets/BackButton'
 import { Ionicons } from '@expo/vector-icons';
 import style from '../css'
-
+import Stor from '../keystore'
 
 
 export default class SignIn extends React.Component {
@@ -11,8 +11,19 @@ export default class SignIn extends React.Component {
         email:'',
         password:'',
     }
+    navigationOptions = {
+        title : 'sdfsdf'
+    }
 
     render(){
+        let obj = {
+            something: 'hey there'
+          }
+          
+          Stor('some_key', obj) // Stores the object as a string.
+          
+          let my_var = Stor('some_key') 
+          console.log('sfsdfsdfsdfsdf',my_var)
         return(
             <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
                 <View style={style.top}></View>

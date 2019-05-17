@@ -4860,6 +4860,11 @@ react-native-screens@1.0.0-alpha.22, "react-native-screens@^1.0.0 || ^1.0.0-alph
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
 
+react-native-secure-key-store@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-secure-key-store/-/react-native-secure-key-store-2.0.2.tgz#da7c5d5d5f771a004184b963becbc4c497d57525"
+  integrity sha512-XJ1d+6S9H1mB3DvvOQmhPaOWiWErWroNx49uEWahA7uWA0HVYWM28z52MN0HavyMgZ1MCrvid8z7ahCVuEvnNQ==
+
 react-native-star-rating@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-star-rating/-/react-native-star-rating-1.1.0.tgz#57fcd023c63e947427c4dbbd1c8f4cc49e5c48ce"
@@ -5215,6 +5220,11 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-secure-storage@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/rn-secure-storage/-/rn-secure-storage-1.1.1.tgz#42bd4ddb1aca6f897e7d96b0882eaf8a71cd5c5c"
+  integrity sha512-8+pG1sBtTIcQWbMb4b9rpC3GvI/4wfRVPdRQMhCjhgHQyKoeAmmQHjJL36OysSN/msJDFfRU69EcoZot9Ubr2w==
 
 rsvp@^3.3.3:
   version "3.6.2"

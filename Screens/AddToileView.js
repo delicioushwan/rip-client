@@ -5,27 +5,24 @@ import ToiletStarRating from '../componets/starRating'
 import MainMap from '../Screens/MainMap'
 class AddToiletView extends Component {
  
-    constructor(props) {
-      super(props);
-      this.state = {
+      state = {
         locationData : 'fucking location will come to here',
         comment : ''
       };
-    }
    
-    onPressButton() {
-      console.log("fuckkkkkkkkkkkkkk", this.state)
+    onPressButton= () => {
+      console.log("fuckkkkkkkkkkkkkk", this.props)
     }
 
     summit = () => {
-      console.log(this.state)
+      console.log(state)
       fetch('http://13.124.90.132:3001/',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({address :this.state.locationData}),
+        body: JSON.stringify({address :state.locationData}),
       })
       .then(res => res.json())
       .then(response => console.log('Success:', JSON.stringify(response)))
@@ -33,10 +30,12 @@ class AddToiletView extends Component {
     }
 
     render(){
+      const { navigation } = this.props;
+      const location = navigation.getParam('location')
         return(
         <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
             <View style = {styles.headLine}>
-              <AddToiletHeadLine 
+              <AddToiletHeadLine
               onPress = {this.onPressButton} summit = {this.summit}/>
             </View>
               {/* <MainMap style = {styles.emptySpace}/> */}
