@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import AddToiletHeadLine from '../componets/AddToiletHeadLine'
 import ToiletStarRating from '../componets/starRating'
+import MainMap from '../Screens/MainMap'
 class AddToiletView extends Component {
  
     constructor(props) {
@@ -38,9 +39,8 @@ class AddToiletView extends Component {
               <AddToiletHeadLine 
               onPress = {this.onPressButton} summit = {this.summit}/>
             </View>
-            <View style = {styles.emptySpace}>
-              <Text>This view is for Maps</Text>
-            </View>
+              {/* <MainMap style = {styles.emptySpace}/> */}
+              <View style = {styles.emptySpace}></View>
             <View style = {styles.first}>
                 <TextInput defaultValue = {this.state.locationData} />
             </View>
@@ -81,16 +81,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     second: {
-        flex: 1,
+        flex: 0.5,
         backgroundColor: 'grey',
         alignItems: 'center',
         justifyContent: 'center',
     },
     third: {
         flex: 2,
-        backgroundColor: 'blue',
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding : 20,
+        // backgroundColor: 'blue',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
 });
   
