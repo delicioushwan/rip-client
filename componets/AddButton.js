@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     menuIcon: {
         zIndex: 9,
         position: 'absolute',
-        top: 30,
-        left: 20,
+        bottom: 30,
+        left: 0,
     }  
 })
