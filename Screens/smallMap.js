@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, Dimensions, Image } from 'react-native';
 import { Constants, MapView, Location, Permissions } from 'expo';
-import ToiletSpot from './ToiletSpot';
 import MenuButton from '../componets/MenuButton'
-import AddButton from '../componets/AddButton'
-import { Ionicons } from '@expo/vector-icons';
 
 let { width, height } = Dimensions.get('window')
 
@@ -54,7 +51,7 @@ export default class MainMap extends Component {
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />
             <MapView
-            style={{ alignSelf: 'stretch', height: '100%' }}
+            style={{ alignSelf: 'stretch', height: '70%' }}
             region={
                 { 
                 latitude: this.state.location.coords.latitude,
@@ -65,39 +62,11 @@ export default class MainMap extends Component {
             >
             <MapView.Marker
             coordinate={this.state.location.coords}
-            title="똥마려 Wanna take shit"
-            description="큰일이다!!"
+            title="get props"
+            description="get props"
             >
-              <Image source={require('../assets/poop.png')}/>
             </MapView.Marker>
-            {this.state.toilet.map(
-              (toiletLocation,index)=>{
-                return <ToiletSpot key ={index} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
-              }
-            )}
-
             </MapView>
-            <View style={
-              {
-                flex : 1,
-                width:'100%',
-                flexDirection:"row",
-                zIndex: 9,
-                position: 'absolute',
-                bottom: 30,
-                justifyContent:'space-between',
-                paddingRight: 30,
-                paddingLeft: 30
-
-                }}>
-              <Ionicons
-                onPress={this._handleMapRegionChange}
-                name="md-locate"
-                size={36.22}
-              />
-              <AddButton
-                navigation={this.props.navigation} />
-            </View>
         </View>
     );
   }

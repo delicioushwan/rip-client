@@ -29,7 +29,7 @@ const DrawerNavigator = createDrawerNavigator(
             screen : SignUp
         },
     },
-    DrawerConfig
+    DrawerConfig,
 ); 
 
 const RootAppNavigator = createStackNavigator(
@@ -37,6 +37,9 @@ const RootAppNavigator = createStackNavigator(
         DrawerNavigator,
         AddToilet : {
             screen : AddToilet
+        },
+        AddComment : {
+            screen : AddComment
         },
     }
 )
