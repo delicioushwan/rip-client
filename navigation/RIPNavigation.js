@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform, Dimensions } from 'react-native' ;
-import { createDrawerNavigator, createAppContainer, createStackNavigator } from 'react-navigation' ;
+import { createDrawerNavigator, createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation' ;
 
 import MainMap from '../Screens/MainMap';
 import SignIn from '../Screens/Signin'
@@ -17,6 +17,8 @@ const DrawerConfig = {
 
 
 const DrawerNavigator = createDrawerNavigator(
+    
+
     {
         Home: {
             screen : MainMap
@@ -28,17 +30,25 @@ const DrawerNavigator = createDrawerNavigator(
             screen : SignUp
         },
     },
-    DrawerConfig
+    DrawerConfig,
+    
 ); 
 
 const RootAppNavigator = createStackNavigator(
     {
-        DrawerNavigator,
         AddToilet : {
             screen : AddToilet
         },
-    }
+        AddComment : {
+            screen : AddComment
+        },
+    },
 )
 
 
-export default createAppContainer(RootAppNavigator);
+export default createAppContainer(createSwitchNavigator(
+    {
+        DrawerNavigator,
+        RootAppNavigator,
+    }
+));

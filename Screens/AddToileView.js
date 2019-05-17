@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView, ScrollView} from 'react-native';
 import AddToiletHeadLine from '../componets/AddToiletHeadLine'
 import ToiletStarRating from '../componets/starRating'
 import MainMap from '../Screens/MainMap'
+import styles from './addStyle'
 class AddToiletView extends Component {
  
       state = {
@@ -34,64 +35,33 @@ class AddToiletView extends Component {
       const location = navigation.getParam('location')
         return(
         <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
-            <View style = {styles.headLine}>
-              <AddToiletHeadLine
+            {/* <View style = {styles.headLine}>
+              <AddToiletHeadLine 
               onPress = {this.onPressButton} summit = {this.summit}/>
-            </View>
+            </View> */}
               {/* <MainMap style = {styles.emptySpace}/> */}
               <View style = {styles.emptySpace}></View>
             <View style = {styles.first}>
-                <TextInput defaultValue = {this.state.locationData} />
+                <TextInput style = {{fontSize : 17.4}} 
+                defaultValue = {this.state.locationData} />
             </View>
             <View style = {styles.second}>
                 <ToiletStarRating />
             </View>
             <View style = {styles.third}>
-                <Text>Comment</Text>
-                <TextInput onChangeText = {(comment) => this.setState({comment})}
-                value = {this.state.comment}/>
+                <Text style = {{fontSize : 19.22}}>Comment</Text>
+                <View style = {styles.commentBox}>
+                  <KeyboardAvoidingView behavior="padding" enabled>
+                  <TextInput onChangeText = {(comment) => this.setState({comment})}
+                  value = {this.state.comment}
+                  placeholder = "input comments here"/>
+                  </KeyboardAvoidingView>
+                </View>
             </View>
         </KeyboardAvoidingView>
         )
     }
 }
 
-const styles = StyleSheet.create({
-    zero : {
-        flex : 1,
-        width : '100%'
-    },
-    headLine : {
-      flex: 0.4,
-      backgroundColor: 'yellow',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    emptySpace : {
-      flex: 2,
-      backgroundColor: 'yellow',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    first: {
-        flex: 1,
-        backgroundColor: 'red',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    second: {
-        flex: 0.5,
-        backgroundColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    third: {
-        flex: 2,
-        padding : 20,
-        // backgroundColor: 'blue',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-    },
-});
   
 export default AddToiletView;

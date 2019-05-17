@@ -4,6 +4,7 @@ import { Constants, MapView, Location, Permissions } from 'expo';
 import ToiletSpot from './ToiletSpot';
 import MenuButton from '../componets/MenuButton'
 import AddButton from '../componets/AddButton'
+import { Ionicons } from '@expo/vector-icons';
 
 let { width, height } = Dimensions.get('window')
 
@@ -73,7 +74,7 @@ export default class MainMap extends Component {
             </MapView.Marker>
             {this.state.toilet.map(
               (toiletLocation,index)=>{
-                return <ToiletSpot key ={index} toiletLocation={toiletLocation}></ToiletSpot>
+                return <ToiletSpot key ={index} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
               }
             )}
             </MapView>
@@ -90,16 +91,14 @@ export default class MainMap extends Component {
                 paddingLeft: 30
 
                 }}>
-              <Button
+              <Ionicons
                 onPress={this._handleMapRegionChange}
-                title="Where I am"
-                color="#841584"
+                name="md-locate"
+                size={36.22}
               />
               <AddButton
                 location={this.state.location.coords}
                 navigation={this.props.navigation} />
-
-
             </View>
         </View>
     );
