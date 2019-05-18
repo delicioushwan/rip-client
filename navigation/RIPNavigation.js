@@ -7,7 +7,8 @@ import SignIn from '../Screens/Signin'
 import SignUp from '../Screens/Signup'
 import AddToilet from '../Screens/AddToileView'
 import AddComment from '../Screens/AddCommentView'
-
+import Authload from '../Screens/authload'
+import SignOut from '../componets/SignOut'
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -34,6 +35,19 @@ const DrawerNavigator = createDrawerNavigator(
     
 ); 
 
+const DrawerNavigatorSignIn = createDrawerNavigator(
+
+    {
+        Home: {
+            screen : MainMap
+        },
+        "Sign Out": {
+            screen : SignOut
+        },
+    },
+    DrawerConfig,
+)
+
 const RootAppNavigator = createStackNavigator(
     {
         AddToilet : {
@@ -48,7 +62,12 @@ const RootAppNavigator = createStackNavigator(
 
 export default createAppContainer(createSwitchNavigator(
     {
+        AuthLoading:Authload,
         DrawerNavigator,
         RootAppNavigator,
+        DrawerNavigatorSignIn
+    },
+    {
+        initialRouteName : 'AuthLoading',
     }
 ));

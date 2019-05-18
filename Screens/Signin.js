@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, Text ,TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { View, TextInput, AsyncStorage, Text ,TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import BackButton from '../componets/BackButton'
 import { Ionicons } from '@expo/vector-icons';
 import style from '../css'
-import Stor from '../keystore'
+
 
 
 export default class SignIn extends React.Component {
@@ -11,19 +11,11 @@ export default class SignIn extends React.Component {
         email:'',
         password:'',
     }
-    navigationOptions = {
-        title : 'sdfsdf'
-    }
-
+    _signInAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'aasertetdbc');
+        this.props.navigation.navigate('DrawerNavigatorSignIn');
+      };
     render(){
-        let obj = {
-            something: 'hey there'
-          }
-          
-          Stor('some_key', obj) // Stores the object as a string.
-          
-          let my_var = Stor('some_key') 
-          console.log('sfsdfsdfsdfsdf',my_var)
         return(
             <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
                 <View style={style.top}></View>
@@ -41,17 +33,17 @@ export default class SignIn extends React.Component {
                         style={style.passwordInput}
                         placeholder=" Password"
 
-                        // onChangeText={(text) => this.setState({text})}
+                        onChangeText={(text) => this.setState({text})}
                     />
                     <TouchableOpacity
                         style={style.signinButton}
+                        onPress={this._signInAsync}
                     >                
                        <Text style={style.submit}><Ionicons
                         name="md-lock"
                         size={60}
                         color="black"
                         /> SIGN IN</Text>
-
                     </TouchableOpacity>
             
                 </View>
