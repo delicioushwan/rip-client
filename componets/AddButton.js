@@ -2,6 +2,13 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
 export default class AddButton extends React.Component{
+    fuckingRendering = async () => {
+        await this.props.getAddress();
+        const goToFuckingToilet = await this.props.navigation.navigate('AddToilet',{'location' : this.props})
+        
+        return goToFuckingToilet;
+      }
+
     render() {
         return(
             <Ionicons
@@ -9,7 +16,10 @@ export default class AddButton extends React.Component{
                 color="#000000"
                 size={36.22}
                 onPress={()=> {
-                    return this.props.navigation.navigate('AddToilet',{'location' : this.props.location})}
+                    // this.props.getAddress();
+                    // return this.props.navigation.navigate('AddToilet',{'location' : this.props})
+                    this.fuckingRendering()
+                }
                 }
             />
         )
