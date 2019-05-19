@@ -1,6 +1,6 @@
 import React from 'react'
-import { Platform, Dimensions } from 'react-native' ;
-import { createDrawerNavigator, createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation' ;
+import { Dimensions } from 'react-native' ;
+import { createDrawerNavigator, createAppContainer, createStackNavigator, createSwitchNavigator, DrawerItems } from 'react-navigation' ;
 
 import MainMap from '../Screens/MainMap';
 import SignIn from '../Screens/Signin'
@@ -15,7 +15,6 @@ const WIDTH = Dimensions.get('window').width;
 const DrawerConfig = {
     drawerWidth: WIDTH*0.83,
 }
-
 
 const DrawerNavigator = createDrawerNavigator(
     
@@ -43,12 +42,13 @@ const DrawerNavigatorSignIn = createDrawerNavigator(
         },
         "Sign Out": {
             screen : SignOut
-        },
-    },
-    DrawerConfig,
+        }
+    },{
+        DrawerConfig,
+    }
 )
 
-const RootAppNavigator = createStackNavigator(
+const FunctionNavigator = createStackNavigator(
     {
         AddToilet : {
             screen : AddToilet
@@ -64,7 +64,7 @@ export default createAppContainer(createSwitchNavigator(
     {
         AuthLoading:Authload,
         DrawerNavigator,
-        RootAppNavigator,
+        FunctionNavigator,
         DrawerNavigatorSignIn
     },
     {

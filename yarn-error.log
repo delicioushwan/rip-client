@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add react-native-secure-key-store
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add native-base
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/home/hwan/2weeks-project/rip-client/node_modules/deepmerge/changelog.md'
+  Error: EACCES: permission denied, mkdir '/home/hwan/2weeks-project/rip-client/node_modules/react-native-star-rating/node_modules/react-native-vector-icons'
 
 npm manifest: 
   {
@@ -32,6 +32,7 @@ npm manifest:
       "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
       "react-native-elements": "^1.1.0",
       "react-native-maps": "^0.24.2",
+      "react-native-secure-key-store": "^2.0.2",
       "react-native-star-rating": "^1.1.0",
       "react-navigation": "^3.9.1",
       "rn-secure-storage": "^1.1.1"
@@ -4907,6 +4908,11 @@ Lockfile:
     version "1.0.0-alpha.22"
     resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
     integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
+  
+  react-native-secure-key-store@^2.0.2:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/react-native-secure-key-store/-/react-native-secure-key-store-2.0.2.tgz#da7c5d5d5f771a004184b963becbc4c497d57525"
+    integrity sha512-XJ1d+6S9H1mB3DvvOQmhPaOWiWErWroNx49uEWahA7uWA0HVYWM28z52MN0HavyMgZ1MCrvid8z7ahCVuEvnNQ==
   
   react-native-star-rating@^1.1.0:
     version "1.1.0"

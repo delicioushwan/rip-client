@@ -1,15 +1,14 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { Constants } from 'expo';
 
 
 const style = StyleSheet.create({
     container : {
         flex : 1,
+        paddingTop: Constants.statusBarHeight,
     },
-    top : {
-        flex : 1,
 
-    },
     backbutton : {
         flex : 1,
 
