@@ -22,17 +22,6 @@ export default class MainMap extends Component {
     this._getLocationAsync();
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   console.log("shouldComponentUpdate--------------> nextState : " + JSON.stringify(nextState));
-  //   return true;
-  // }
-  // componentDidUpdate(prevProps, prevState){
-  //   console.log("componentDidUpdate: " + JSON.stringify(prevProps) + " " + JSON.stringify(prevState));
-  // }
-  // componentDidUpdate(){
-  //     this._getReverseGeocodeAsync();
-  // }
-
   fetchData = async () => {
     const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
     const json = await response.json();
@@ -41,6 +30,7 @@ export default class MainMap extends Component {
 
   _handleMapRegionChange = currentLocation => {
     this.setState({ currentLocation });
+  };
 
   _getReverseGeocodeAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -48,12 +38,17 @@ export default class MainMap extends Component {
       latitude: this.state.location.coords.latitude,
       longitude: this.state.location.coords.longitude
     }
+    if (status !== 'granted') {
+      this.setState({
+        locationResult: 'Permission to access location was denied',
+        location,
+      });
+    }
+
     let address = await Location.reverseGeocodeAsync(addressLocation)
-    
     this.setState({address:address});
   }
 
-  };
 
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -64,14 +59,13 @@ export default class MainMap extends Component {
       });
     }
 
-
     let location = await Location.getCurrentPositionAsync({});
-      this.setState(
-        {
-          // locationResult: JSON.stringify(location),
-          location
-        }
-      );
+    this.setState(
+      {
+        // locationResult: JSON.stringify(location),
+        location
+      }
+    );
   };
   render() {
     return (
