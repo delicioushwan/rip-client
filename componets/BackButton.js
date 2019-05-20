@@ -9,17 +9,11 @@ export default class BackButton extends React.Component{
                 name="md-arrow-back"
                 color="#000000"
                 size={32}
-                style={styles.menuIcon}
                 onPress={()=> {
+                    console.log(this.props)
                     return this.props.navigation.navigate('Home')}
                 }
             />
         )
     }
 }
-
-const styles = StyleSheet.create({
-    menuIcon: {
-        alignItems: 'flex-start'
-    }  
-})

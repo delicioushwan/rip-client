@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import { Text, View, TextInput, Button, KeyboardAvoidingView} from 'react-native';
 import AddCommentHeadLine from '../componets/AddCommentHeadLine'
 import ToiletStarRating from '../componets/starRating'
 import styles from './addStyle'
+import BackButton from '../componets/BackButton'
+
 class AddCommentView extends Component {
- 
+  static navigationOptions = {
+    headerTitle: 'Add Comments',
+    headerRight: (
+      <Button
+        onPress={()=>{console.log('this button works')}}
+        title="Submit"
+        color="black"
+      />
+    ),
+    headerLeft: (
+      <BackButton />
+    ),
+
+  };
+
     constructor(props) {
+      console.log(props)
       super(props);
       this.state = {
         locationData : 'fucking location will come to here',
         comment : '',
       };
+      console.log('addcommentciweew',props)
+
     }
-   
     onPressButton() {
       console.log("Doing....")
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions } from 'react-native' ;
+import { Platform, Dimensions } from 'react-native' ;
 import { createDrawerNavigator, createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation' ;
 
 import MainMap from '../Screens/MainMap';
@@ -10,6 +10,7 @@ import AddComment from '../Screens/AddCommentView'
 import Authload from '../Screens/authload'
 import SignOut from '../componets/SignOut'
 
+
 const WIDTH = Dimensions.get('window').width;
 
 const DrawerConfig = {
@@ -17,8 +18,6 @@ const DrawerConfig = {
 }
 
 const DrawerNavigator = createDrawerNavigator(
-    
-
     {
         Home: {
             screen : MainMap
