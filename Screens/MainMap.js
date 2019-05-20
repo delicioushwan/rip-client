@@ -13,13 +13,25 @@ export default class MainMap extends Component {
   state = {
     locationResult: null,
     location: {coords: { latitude: 37.78825, longitude: -122.4324}},
-    toilet : []
+    address: 'there is no address',
+    toilet : [],
   };
 
   componentDidMount() {
     this.fetchData();
     this._getLocationAsync();
   }
+
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log("shouldComponentUpdate--------------> nextState : " + JSON.stringify(nextState));
+  //   return true;
+  // }
+  // componentDidUpdate(prevProps, prevState){
+  //   console.log("componentDidUpdate: " + JSON.stringify(prevProps) + " " + JSON.stringify(prevState));
+  // }
+  // componentDidUpdate(){
+  //     this._getReverseGeocodeAsync();
+  // }
 
   fetchData = async () => {
     const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
@@ -29,6 +41,18 @@ export default class MainMap extends Component {
 
   _handleMapRegionChange = currentLocation => {
     this.setState({ currentLocation });
+
+  _getReverseGeocodeAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    let addressLocation = {
+      latitude: this.state.location.coords.latitude,
+      longitude: this.state.location.coords.longitude
+    }
+    let address = await Location.reverseGeocodeAsync(addressLocation)
+    
+    this.setState({address:address});
+  }
+
   };
 
   _getLocationAsync = async () => {
@@ -44,13 +68,12 @@ export default class MainMap extends Component {
     let location = await Location.getCurrentPositionAsync({});
       this.setState(
         {
-          locationResult: JSON.stringify(location),
+          // locationResult: JSON.stringify(location),
           location
         }
       );
   };
   render() {
-    console.log('getinfo',this.state)
     return (
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />
@@ -96,7 +119,10 @@ export default class MainMap extends Component {
               />
               <AddButton
                 location={this.state.location.coords}
-                navigation={this.props.navigation} />
+                navigation={this.props.navigation}
+                address = {this.state.address}
+                getAddress = {this._getReverseGeocodeAsync} 
+                />
             </View>
         </View>
     );

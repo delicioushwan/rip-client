@@ -6,7 +6,7 @@ const AddCommentHeadLine = (props) => (
     <View style = {styles.buttonStyle}>
         <Button title = "뒤로가기" onPress = {props.onPress}/>
         <Text style = {styles.subject}> 평가하기 </Text>
-        <Button title = "확인" onPress = {props.onPress2}/>
+        <Button title = "확인" onPress = {props.onPress2} />
     </View>
 );
 
