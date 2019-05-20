@@ -16,7 +16,7 @@ export default class SignUp extends React.Component {
         errorCheck: ''
     }
     _submit = () => {
-        fetch('54.180.109.44:5000',
+        fetch('http://13.209.6.108:5000/users/signup',
         {
           method: 'POST',
           headers: {
@@ -28,8 +28,6 @@ export default class SignUp extends React.Component {
             password : this.state.password,
           }),
         })
-        .then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
         .catch(error => console.log(error) );
     }
 
@@ -110,8 +108,8 @@ export default class SignUp extends React.Component {
 
                     <TouchableOpacity
                         style={style.signinButton}
-                        onPress={this._errorMessages}
-                        // onPress={this._submit}
+                        // onPress={this._errorMessages}
+                        onPress={this._submit}
                     >                
                     <Text style={style.submit}>SIGN UP</Text>
                     </TouchableOpacity>

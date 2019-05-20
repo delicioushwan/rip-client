@@ -13,6 +13,22 @@ export default class SignIn extends React.Component {
         errorEmail: '',
         errorPassword: '',
     }
+
+    _submit = () => {
+        fetch('http://13.209.6.108:5000/users/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email : this.state.email,
+            password : this.state.password,
+          }),
+        }).then(res => console.log('res success', res))
+        .catch(error => console.log(error) );
+    }
+
     _errorMessages = () => {
         if (this.state.email === "") {
             this.setState(() => ({ errorEmail: "Email Address required."}));
@@ -25,6 +41,7 @@ export default class SignIn extends React.Component {
             this.setState(() => ({ errorPassword: ''}));
           }
     }
+
     _signInAsync = async () => {
         await AsyncStorage.setItem('userToken', 'aasertetdbc');
         this.props.navigation.navigate('DrawerNavigatorSignIn');
@@ -66,7 +83,8 @@ export default class SignIn extends React.Component {
                     <TouchableOpacity
                         style={style.signinButton}
                         onPress={this._errorMessages}
-                        // onPress={this._signInAsync}
+                        onPress={this._submit}
+                        onPress={this._signInAsync}
                     >                
                        <Text style={style.submit}><Ionicons
                         name="md-lock"
