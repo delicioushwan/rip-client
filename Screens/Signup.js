@@ -63,10 +63,10 @@ export default class SignUp extends React.Component {
 
     _changeErr = (key,errName,text) => {
         this.setState(
-            {
-                [key] : text,
-                [errName] : ''
-            })
+          {
+              [key] : text,
+              [errName] : ''
+          })
         }
 
     render(){
@@ -80,7 +80,7 @@ export default class SignUp extends React.Component {
                         placeholder=" Email Address"
                         onChangeText={(text) => this._changeErr('email','errorEmail',text)}
                     />
-                    {this._errorMsg ("errorEmail")}  
+                    {this._errorMsg ("errorEmail")}
 
                     <Text style={style.inputText} >PASSWORD</Text>
                     <TextInput
