@@ -49,14 +49,17 @@ const DrawerNavigatorSignIn = createDrawerNavigator(
 
 const FunctionNavigator = createStackNavigator(
     {
-        AddToilet : {
-            screen : AddToilet
-        },
         AddComment : {
             screen : AddComment
         },
     },
 )
+
+const FunctionNavigator1 = createStackNavigator({
+        AddToilet : {
+            screen : AddToilet
+        },
+})
 
 
 export default createAppContainer(createSwitchNavigator(
@@ -64,7 +67,8 @@ export default createAppContainer(createSwitchNavigator(
         AuthLoading:Authload,
         DrawerNavigator,
         FunctionNavigator,
-        DrawerNavigatorSignIn
+        DrawerNavigatorSignIn,
+        FunctionNavigator1,
     },
     {
         initialRouteName : 'AuthLoading',

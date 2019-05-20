@@ -90,7 +90,7 @@ export default class MainMap extends Component {
             </MapView.Marker>
             {this.state.toilet.map(
               (toiletLocation,index)=>{
-                return <ToiletSpot key ={index} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
+                return <ToiletSpot key ={index} number={index} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
               }
             )}
             </MapView>

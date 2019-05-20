@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Button, KeyboardAvoidingView } from 'react-native';
 import ToiletStarRating from '../componets/starRating'
-import MainMap from '../Screens/MainMap'
 import styles from './addStyle'
 import BackButton from '../componets/BackButton'
+import MiniMap from './miniMap';
 
 
 class AddToiletView extends Component {
@@ -72,15 +72,11 @@ class AddToiletView extends Component {
   // }
     
   render(){
-    console.log('addtoiletview',this.props)
+    let { location } = this.props.navigation.state.params.location
+    console.log('addtoiletview',this.props.navigation.state.params.location)
     return(
     <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
-        {/* <View style = {styles.headLine}>
-          <AddToiletHeadLine 
-          onPress = {this.onPressButton} summit = {this.summit} summitComment = {this.summitComment}/>
-        </View> */}
-          {/* <MainMap style = {styles.emptySpace}/> */}
-          <View style = {styles.emptySpace}></View>
+    {/* <MiniMap></MiniMap> */}
         <View style = {styles.first}>
             <TextInput style = {{fontSize : 17.4}} 
               onChangeText = {(locationData) => this.setState({locationData})}
