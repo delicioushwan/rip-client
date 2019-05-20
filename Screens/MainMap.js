@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 import { Constants, MapView, Location, Permissions } from 'expo';
 import ToiletSpot from './ToiletSpot';
 import MenuButton from '../componets/MenuButton'
@@ -11,7 +11,6 @@ let { width, height } = Dimensions.get('window')
 
 export default class MainMap extends Component {
   state = {
-    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 1, longitudeDelta: 1*(width/height) },
     locationResult: null,
     location: {coords: { latitude: 37.78825, longitude: -122.4324}},
     address: 'there is no address',
@@ -19,8 +18,8 @@ export default class MainMap extends Component {
   };
 
   componentDidMount() {
-    this._getLocationAsync();
     this.fetchData();
+    this._getLocationAsync();
   }
 
   // shouldComponentUpdate(nextProps, nextState){
@@ -40,6 +39,9 @@ export default class MainMap extends Component {
     this.setState({toilet : json})
   }
 
+  _handleMapRegionChange = currentLocation => {
+    this.setState({ currentLocation });
+
   _getReverseGeocodeAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     let addressLocation = {
@@ -51,8 +53,6 @@ export default class MainMap extends Component {
     this.setState({address:address});
   }
 
-  _handleMapRegionChange = mapRegion => {
-    this.setState({ mapRegion });
   };
 
   _getLocationAsync = async () => {
@@ -74,7 +74,6 @@ export default class MainMap extends Component {
       );
   };
   render() {
-    console.log("=========================",this.state);
     return (
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />
@@ -103,19 +102,18 @@ export default class MainMap extends Component {
             </MapView>
             <View style={
               {
-                flex : 1,
                 width:'100%',
                 flexDirection:"row",
-                zIndex: 9,
                 position: 'absolute',
-                bottom: 30,
                 justifyContent:'space-between',
                 paddingRight: 30,
-                paddingLeft: 30
-
+                paddingLeft: 30,
+                bottom : 30
                 }}>
               <Ionicons
-                onPress={this._handleMapRegionChange}
+                onPress={()=> {
+                  this._handleMapRegionChange() 
+                  }}
                 name="md-locate"
                 size={36.22}
               />
