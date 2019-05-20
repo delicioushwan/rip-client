@@ -14,7 +14,8 @@ export default class MainMap extends Component {
     mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 1, longitudeDelta: 1*(width/height) },
     locationResult: null,
     location: {coords: { latitude: 37.78825, longitude: -122.4324}},
-    toilet : []
+    address: 'there is no address',
+    toilet : [],
   };
 
   componentDidMount() {
@@ -22,10 +23,32 @@ export default class MainMap extends Component {
     this.fetchData();
   }
 
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log("shouldComponentUpdate--------------> nextState : " + JSON.stringify(nextState));
+  //   return true;
+  // }
+  // componentDidUpdate(prevProps, prevState){
+  //   console.log("componentDidUpdate: " + JSON.stringify(prevProps) + " " + JSON.stringify(prevState));
+  // }
+  // componentDidUpdate(){
+  //     this._getReverseGeocodeAsync();
+  // }
+
   fetchData = async () => {
     const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
     const json = await response.json();
     this.setState({toilet : json})
+  }
+
+  _getReverseGeocodeAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    let addressLocation = {
+      latitude: this.state.location.coords.latitude,
+      longitude: this.state.location.coords.longitude
+    }
+    let address = await Location.reverseGeocodeAsync(addressLocation)
+    
+    this.setState({address:address});
   }
 
   _handleMapRegionChange = mapRegion => {
@@ -45,13 +68,13 @@ export default class MainMap extends Component {
     let location = await Location.getCurrentPositionAsync({});
       this.setState(
         {
-          locationResult: JSON.stringify(location),
+          // locationResult: JSON.stringify(location),
           location
         }
       );
   };
   render() {
-    console.log(this.state)
+    console.log("=========================",this.state);
     return (
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />
@@ -98,7 +121,10 @@ export default class MainMap extends Component {
               />
               <AddButton
                 location={this.state.location.coords}
-                navigation={this.props.navigation} />
+                navigation={this.props.navigation}
+                address = {this.state.address}
+                getAddress = {this._getReverseGeocodeAsync} 
+                />
             </View>
         </View>
     );

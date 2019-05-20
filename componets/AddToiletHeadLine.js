@@ -6,7 +6,7 @@ const AddToiletHeadLine = (props) => (
     <View style = {styles.buttonStyle}>
         <Button title = "뒤로가기" onPress = {props.onPress}/>
         <Text style = {styles.subject}> 화장실 추가 </Text>
-        <Button title = "확인" onPress = {props.summit}/>
+        <Button title = "확인" onPress = {() => {props.summit(); /*props.summitComment()*/}} />
     </View>
 );
 
