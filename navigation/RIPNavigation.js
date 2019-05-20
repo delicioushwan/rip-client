@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dimensions } from 'react-native' ;
-import { createDrawerNavigator, createAppContainer, createStackNavigator, createSwitchNavigator, DrawerItems } from 'react-navigation' ;
+import { createDrawerNavigator, createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation' ;
 
 import MainMap from '../Screens/MainMap';
 import SignIn from '../Screens/Signin'
