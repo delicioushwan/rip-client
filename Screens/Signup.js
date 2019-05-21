@@ -165,8 +165,8 @@ export default class SignUp extends React.Component {
                           <View style = {style.inModalStyle}>
                             <Text  style={{color: 'white', fontSize : 15, fontWeight: 'bold', padding : 15}}> Check your E-mail or Password </Text>
                             <Button
-                              style = {{backgroundColor : 'white'}}
                               title = ' close '
+                              color = "black"
                               onPress={() => {
                                 this.setModalVisible(!this.state.modalVisible);
                               }}>
