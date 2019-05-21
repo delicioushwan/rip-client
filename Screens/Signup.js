@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Text ,TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { View, TextInput, Text ,TouchableOpacity, KeyboardAvoidingView, Modal, Button, ScrollView} from 'react-native';
 import BackButton from '../componets/BackButton'
 import style from '../css'
 
@@ -13,9 +13,14 @@ export default class SignUp extends React.Component {
         errorEmail: '',
         errorNickname: '',
         errorPassword: '',
-        errorCheck: ''
+        errorCheck: '',
+        modalVisible: false,
     }
+
+    flag = true;
+
     _submit = () => {
+      if(this.state.errorEmail === '' && this.state.errorPassword === ''){
         fetch('http://13.209.6.108:5000/users/signup',
         {
           method: 'POST',
@@ -27,32 +32,55 @@ export default class SignUp extends React.Component {
             email : this.state.email,
             password : this.state.password,
           }),
-        })
+        }).then(res => {console.log('res success', res); return true})
         .catch(error => console.log(error) );
+      }
+      flag = false;
+
+      if(!flag){
+        this.setModalVisible(true);
+        return flag;
+      }
     }
 
     _errorMessages = () => {
         if (this.state.email === "") {
             this.setState(() => ({ errorEmail: "Email Address required."}));
+            flag = false;
           } else {
             this.setState(() => ({ errorEmail: ''}));
+            flag = true;
           }
         if (this.state.password === "") {
             this.setState(() => ({ errorPassword: "Password required."}));
+            flag = false;
           } else {
             this.setState(() => ({ errorPassword: ''}));
+            flag = true;
           }
         if (this.state.nickname === "") {
             this.setState(() => ({ errorNickname: "Nickname required."}));
+            flag = false;
           } else {
             this.setState(() => ({ errorNickname: ''}));
+            flag = true;
           }
         if (this.state.password !== this.state.check) {
             this.setState(() => ({ errorCheck: "Not the same password."}));
+            flag = false;
           } else {
             this.setState(() => ({ errorCheck: ''}));
+            flag = true;
           }
+        if (this.state.email === "" || this.state.password === "" || this.state.nickname === "" ) {
+            flag = false;
+          }
+          return flag;
     }
+
+    _signInAsync = () => {
+      this.props.navigation.navigate('SignIn');
+    };
 
     _errorMsg = (check) => {
         const state = this.state
@@ -69,8 +97,12 @@ export default class SignUp extends React.Component {
           })
         }
 
+    setModalVisible(visible) {
+          this.setState({modalVisible: visible});
+    }
     render(){
         return(
+          <ScrollView>
             <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
                 <View style={style.backbutton}><BackButton navigation={this.props.navigation} /></View>
                 <View style={style.inputTag}>
@@ -86,6 +118,7 @@ export default class SignUp extends React.Component {
                     <TextInput
                         style={style.passwordInput}
                         placeholder=" Password"
+                        secureTextEntry={true}
                         onChangeText={(text) => this._changeErr('password','errorPassword',text)}
                     />
                     {this._errorMsg("errorPassword")}
@@ -94,6 +127,7 @@ export default class SignUp extends React.Component {
                     <TextInput
                         style={style.passwordInput}
                         placeholder=" Password"
+                        secureTextEntry={true}
                         onChangeText={(text) => this._changeErr('check','errorCheck',text)}
                     />
                     {this._errorMsg("errorCheck")}
@@ -108,16 +142,44 @@ export default class SignUp extends React.Component {
 
                     <TouchableOpacity
                         style={style.signinButton}
+                        onPress = {() => {
+                          this._errorMessages() &&
+                          this._submit() &&
+                          this._signInAsync()
+                        }}
                         // onPress={this._errorMessages}
-                        onPress={this._submit}
+                        // onPress={this._submit}
+
                     >                
                     <Text style={style.submit}>SIGN UP</Text>
                     </TouchableOpacity>
-            
+                    <Modal
+                        
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                          Alert.alert('Modal has been closed.');
+                        }}>
+                        <View style = {style.modalStyle}>
+                          <View style = {style.inModalStyle}>
+                            <Text  style={{color: 'white', fontSize : 15, fontWeight: 'bold', padding : 15}}> Check your E-mail or Password </Text>
+                            <Button
+                              style = {{backgroundColor : 'white'}}
+                              title = ' close '
+                              onPress={() => {
+                                this.setModalVisible(!this.state.modalVisible);
+                              }}>
+                              <Text> OK </Text>
+                            </Button>
+                          </View>
+                        </View>
+                    </Modal>
                 </View>
                 <View style={{flex:2}}>
                 </View>
             </KeyboardAvoidingView>    
+            </ScrollView>
         )
     
     }

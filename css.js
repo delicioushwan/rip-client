@@ -46,9 +46,23 @@ const style = StyleSheet.create({
         marginTop: 30,
         fontSize : 20,
         color:'black' 
-    }
-
-
+    },
+    modalStyle : {
+        flex : 1,
+        // flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inModalStyle : {
+        height : "24%",
+        width : "71.242%",
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        backgroundColor : "black",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 })
 
 export default style
