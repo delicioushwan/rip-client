@@ -18,12 +18,13 @@ export default class MainMap extends Component {
   };
 
   componentDidMount() {
-    this.fetchData();
     this._getLocationAsync();
+    this.fetchData();
   }
 
   fetchData = async () => {
     const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
+    // const response  = await fetch('http://13.209.131.247:5000/toilet').then(console.log('!!!!!'));
     const json = await response.json();
     this.setState({toilet : json})
   }
