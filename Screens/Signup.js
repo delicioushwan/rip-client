@@ -21,7 +21,7 @@ export default class SignUp extends React.Component {
 
     _submit = () => {
       if(this.state.errorEmail === '' && this.state.errorPassword === ''){
-        fetch('http://13.209.6.108:5000/users/signup',
+        fetch('http://13.209.131.247:5000/users/signup',
         {
           method: 'POST',
           headers: {
@@ -32,14 +32,18 @@ export default class SignUp extends React.Component {
             email : this.state.email,
             password : this.state.password,
           }),
-        }).then(res => {console.log('res success', res); return true})
-        .catch(error => console.log(error) );
-      }
-      flag = false;
-
-      if(!flag){
-        this.setModalVisible(true);
-        return flag;
+        }).then(res => {
+          if(res.ok){
+              console.log("--------success---------", res.ok);
+              flag = true;
+              this._signInAsync()
+          }
+          else {
+              console.log("--------fail---------", res.ok);
+              flag= false;
+              this.setModalVisible(true);
+          }
+        })
       }
     }
 
@@ -79,7 +83,7 @@ export default class SignUp extends React.Component {
     }
 
     _signInAsync = () => {
-      this.props.navigation.navigate('SignIn');
+      this.props.navigation.navigate('Sign In');
     };
 
     _errorMsg = (check) => {
@@ -144,8 +148,7 @@ export default class SignUp extends React.Component {
                         style={style.signinButton}
                         onPress = {() => {
                           this._errorMessages() &&
-                          this._submit() &&
-                          this._signInAsync()
+                          this._submit()
                         }}
                         // onPress={this._errorMessages}
                         // onPress={this._submit}

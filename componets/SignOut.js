@@ -12,7 +12,7 @@ export default class SignOut extends React.Component {
         this.props.navigation.navigate('DrawerNavigator');
     }
     _Submit = () => {
-      fetch('http://13.209.6.108:5000/users/logout',
+      fetch('http://13.209.131.247:5000/users/logout',
       {
         method: 'GET',
       }).then(res => console.log('res success', res))
