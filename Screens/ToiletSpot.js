@@ -1,7 +1,6 @@
 import React from 'react';
-import { Image } from 'react-native';
 import { MapView } from 'expo';
-
+import { Ionicons } from '@expo/vector-icons';
 
 
 const ToiletSpot = (props) => {
@@ -20,7 +19,7 @@ const ToiletSpot = (props) => {
             onCalloutPress={() => {
                 props.navigation.navigate("AddComment",{"infos" : props})}}
         >
-        <Image source={require('../assets/toilet.png')}/>
+            <Ionicons name="md-heart" size={40} color='#FF1493'/>
         </MapView.Marker>
 
     )

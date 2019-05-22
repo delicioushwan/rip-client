@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, KeyboardAvoidingView} from 'react-native';
+import { Text, View, TextInput, Button, KeyboardAvoidingView, ScrollView, Image } from 'react-native';
 import ToiletStarRating from '../componets/starRating'
 import styles from './addStyle'
 import BackButton from '../componets/BackButton'
@@ -25,8 +25,14 @@ class AddCommentView extends Component {
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
     return(
-      <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
-          <MiniMap toiletInfo = {toiletLocation}></MiniMap>
+      <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled ='false'>
+        <ScrollView style={styles.zero}>
+        <View style={{
+          width :'100%',
+          height:350
+          }}>
+        <MiniMap toiletInfo = {toiletLocation}></MiniMap>
+        </View>
         <View style = {styles.first}>
           <Text>{ toiletLocation.address }</Text>
         </View>
@@ -36,15 +42,20 @@ class AddCommentView extends Component {
         <View style = {styles.third}>
           <Text>Comment</Text>
           <View style = {styles.commentBox}>
-            <Text style = {styles.commentStyle}>First Comment will Come to here</Text>
-            <Text style = {styles.commentStyle}>Second Comment will Come to here</Text>
-            <Text style = {styles.commentStyle}>Third Comment will Come to here</Text>
+            <ScrollView >
+              <Text flexWrap='wrap' style = {styles.commentStyle}>Firstsdf sdfsdfdsf dsfsdfsdfsdfsdf sdfdsfsd fdsfdsfComment will Come to here</Text>
+              <Text style = {styles.commentStyle}>Second Comment will Come to here</Text>
+              <Text style = {styles.commentStyle}>Third Comment will Come to here</Text>
+            </ScrollView>
             <TextInput style = {styles.inputStyle}
-            // onChangeText = {(comment) => this.setState({comment})}
-            // value = {this.state.comment}
+              // onChangeText = {(comment) => this.setState({comment})}
+              // value = {this.state.comment}
             placeholder = "input comments here"/>
           </View>
         </View>
+        <View style={{height:100}}></View>
+
+        </ScrollView>
       </KeyboardAvoidingView>
     )
   }
