@@ -23,8 +23,8 @@ export default class MainMap extends Component {
   }
 
   fetchData = async () => {
-    const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
-    // const response  = await fetch('http://13.209.131.247:5000/toilet').then(console.log('!!!!!'));
+    // const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
+    const response  = await fetch('http://13.209.131.247:5000/toilet')
     const json = await response.json();
     this.setState({toilet : json})
   }
@@ -69,6 +69,7 @@ export default class MainMap extends Component {
     );
   };
   render() {
+    console.log(this.state.toilet)
     return (
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />
