@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { Constants, MapView, Location, Permissions } from 'expo';
+import { Constants, MapView, } from 'expo';
 
 let { width, height } = Dimensions.get('window')
 
@@ -39,10 +39,10 @@ export default class MiniMap extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2.23,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
 });

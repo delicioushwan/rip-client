@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     commentStyle : {
         padding : 5,
         fontSize : 15.64,
-    }
+    },
 });
 
 export default styles;
