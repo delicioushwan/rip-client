@@ -12,7 +12,11 @@ class AddToiletView extends Component {
     title: 'Add Toilet',
     headerRight: (
       <Button
-        onPress={()=>{console.log('this button works')}}
+        onPress={()=>{
+          navigation.getParam('summit')();
+          navigation.getParam('summitComment')()
+          navigation.navigate('Home')
+        }}
         title="Submit"
         color="black"
       />
@@ -32,8 +36,11 @@ class AddToiletView extends Component {
     longitude : this.props.navigation.state.params.location.location.longitude,
   };
 
-  onPressButton= () => {
-    console.log("fuckkkkkkkkkkkkkk", this.props.navigation.state.params.location.address[0])
+  componentDidMount(){
+    this.props.navigation.setParams({
+      summit:this.summit,
+      summitComment:this.summitComment
+    })
   }
 
   summit = () => {
@@ -47,7 +54,7 @@ class AddToiletView extends Component {
         longitude : this.state.longitude,
         latitude : this.state.latitude,
         address : this.state.locationData, 
-        description : this.state.comment
+        // description : this.state.comment
       }),
     })
     .then(response => console.log('Add Toilet Success:', JSON.stringify(response)))
@@ -65,7 +72,7 @@ class AddToiletView extends Component {
         comment : this.state.comment,
       }),
     })
-    .then(response => console.log('Add Comment Success:', JSON.stringify(response)))
+    .then(response => JSON.stringify(response))
     .catch(error => console.error('Error:', error));
   }
     

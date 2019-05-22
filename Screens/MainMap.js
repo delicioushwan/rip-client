@@ -69,7 +69,6 @@ export default class MainMap extends Component {
     );
   };
   render() {
-    console.log(this.state.toilet)
     return (
         <View style={styles.container}>
         <MenuButton navigation={this.props.navigation} />

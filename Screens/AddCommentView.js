@@ -9,7 +9,7 @@ import MiniMap from './miniMap'
 class AddCommentView extends Component {
   state = {
     address : 'there is no Address in here',
-    comment : ''
+    comment : '',
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -17,7 +17,10 @@ class AddCommentView extends Component {
       headerTitle: 'Add Comments',
       headerRight: (
         <Button
-          onPress={()=>{console.log('this button works')}}
+          onPress={()=>{
+            navigation.getParam('summitComment')() ;
+            navigation.navigate('Home') ;
+          }}
           title="Submit"
           color="black"
         />
@@ -28,6 +31,13 @@ class AddCommentView extends Component {
     }
   };
 
+  componentDidMount(){
+    this.props.navigation.setParams({
+      summitComment:this.summitComment
+    })
+  }
+
+
   summitComment = () => {
     fetch('http://13.209.131.247:5000/comments',
     {
@@ -37,10 +47,10 @@ class AddCommentView extends Component {
       },
       body: JSON.stringify({
         comment : this.state.comment,
+        toiletId : this.props.navigation.state.params.infos.toiletLocation.id
       }),
     })
-    .then(res => res.json())
-    .then(response => console.log('Add Comment Success:', JSON.stringify(response)))
+    .then(response => console.log('Add Comment Success:',(response)))
     .catch(error => console.error('Error:', error));
   }
 
@@ -62,48 +72,51 @@ class AddCommentView extends Component {
   }
   fuckingRendering = async () => {
     await this._getReverseGeocodeAsync();
-}
+  }
 
 
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
-    this.fuckingRendering();
-    console.log(this.state.address)
+    // this.fuckingRendering();
+    console.log('addcommentview',toiletLocation)
     return(
-      <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled ='false'>
-        <ScrollView style={styles.zero}>
-        <View style={{
-          width :'100%',
-          height:350
-          }}>
-        <MiniMap toiletInfo = {toiletLocation}></MiniMap>
-        </View>
-        <View style = {styles.first}>
-          <Text style = {{padding : 15}}>{ this.state.address }</Text>
-        </View>
-        <View style = {styles.second}>
-          <View style = {{padding:15}}>
-            <ToiletStarRating />
+      <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
+        <ScrollView 
+          style={styles.zero}>
+          <View style={{
+            width :'100%',
+            height:300
+            }}>
+            <MiniMap toiletInfo = {toiletLocation}></MiniMap>
           </View>
-        </View>
-        <View style = {styles.third}>
-          <Text>Comment</Text>
-          <View style = {styles.commentBox}>
-            <ScrollView >
-              <Text flexWrap='wrap' style = {styles.commentStyle}>Firstsdf sdfsdfdsf dsfsdfsdfsdfsdf sdfdsfsd fdsfdsfComment will Come to here</Text>
-              <Text style = {styles.commentStyle}>Second Comment will Come to here</Text>
-              <Text style = {styles.commentStyle}>Third Comment will Come to here</Text>
-            </ScrollView>
-            <TextInput style = {styles.inputStyle}
-              onChangeText = {(comment) => this.setState({comment})}
-              value = {this.state.comment}
-              placeholder = "input comments here"
-              onPress = {this.summitComment}
-            />
+          <View style = {styles.first}>
+            <Text style = {{padding : 15}}>{ this.state.address }</Text>
           </View>
-        </View>
-        <View style={{height:100}}></View>
-
+          <View style = {styles.second}>
+            <View style = {{padding:15}}>
+              <ToiletStarRating />
+            </View>
+          </View>
+          <View style = {styles.third}>
+            <Text>Comment</Text>
+            <View style = {styles.commentBox}>
+              <ScrollView
+                style={{height:100}}
+              >
+                {toiletLocation.comments.map((toilet,index)=>{
+                  {console.log(toilet.comment)}
+                  return <Text key={index} flexWrap='wrap' style = {styles.commentStyle}>{toilet.comment}</Text>
+                })}
+              </ScrollView>
+              <TextInput style = {styles.inputStyle}
+                onPress = {() => this.summitComment()}
+                onChangeText = {(comment) => this.setState({comment})}
+                value = {this.state.comment}
+                placeholder = "input comments here"
+              />
+            </View>
+          </View>
+          <View style={{height:100}}></View>
         </ScrollView>
       </KeyboardAvoidingView>
     )

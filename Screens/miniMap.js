@@ -41,10 +41,9 @@ export default class MiniMap extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2.23,
     alignItems: 'center',
     justifyContent: 'center',
-    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
 });
