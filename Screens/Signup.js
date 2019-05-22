@@ -21,7 +21,7 @@ export default class SignUp extends React.Component {
 
     _submit = () => {
       if(this.state.errorEmail === '' && this.state.errorPassword === ''){
-        fetch('http://13.209.6.108:5000/users/signup',
+        fetch('http://13.209.131.247:5000/users/signup',
         {
           method: 'POST',
           headers: {

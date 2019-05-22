@@ -20,7 +20,7 @@ export default class SignIn extends React.Component {
 
     _submit = () => {
         if(this.state.errorEmail === '' && this.state.errorPassword === ''){
-            fetch('http://13.209.6.108:5000/users/login',
+            fetch('http://13.209.131.247:5000/users/login',
             {
               method: 'POST',
               headers: {

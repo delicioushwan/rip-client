@@ -6,13 +6,15 @@ let { width, height } = Dimensions.get('window')
 
 
 export default class MiniMap extends Component {
+
   render() {
-    console.log(this)
+    // console.log(this)
     let { toiletInfo } = this.props
     let coords = {
-      latitude: Number(toiletInfo.lat),
-      longitude: Number(toiletInfo.lon)
+      latitude: Number(toiletInfo.latitude),
+      longitude: Number(toiletInfo.longitude)
     }
+    
     return (
       <View style={styles.container}>
         <MapView
@@ -39,10 +41,9 @@ export default class MiniMap extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2.23,
     alignItems: 'center',
     justifyContent: 'center',
-    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
 });

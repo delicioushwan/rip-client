@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 const ToiletSpot = (props) => {
-    const latitude = Number(props.toiletLocation.lat)
-    const longitude = Number(props.toiletLocation.lon)
+    const latitude = Number(props.toiletLocation.latitude)
+    const longitude = Number(props.toiletLocation.longitude)
     return(
         <MapView.Marker
             coordinate={
