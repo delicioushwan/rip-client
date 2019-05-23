@@ -36,6 +36,7 @@ class AddCommentView extends Component {
       summitComment:this.summitComment
     })
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    this._getReverseGeocodeAsync()
   }
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -66,8 +67,8 @@ class AddCommentView extends Component {
   _getReverseGeocodeAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     let addressLocation = {
-      latitude: Number(this.props.navigation.state.params.infos.latitude),
-      longitude: Number(this.props.navigation.state.params.infos.longitude),
+      latitude: Number(this.props.navigation.state.params.infos.toiletLocation.latitude),
+      longitude: Number(this.props.navigation.state.params.infos.toiletLocation.longitude),
     }
     if (status !== 'granted') {
       this.setState({
@@ -75,18 +76,14 @@ class AddCommentView extends Component {
         location,
       });
     }
-
     let address = await Location.reverseGeocodeAsync(addressLocation);
-    this.setState({address:address});
-  }
-  fuckingRendering = async () => {
-    await this._getReverseGeocodeAsync();
+    let addressKr = address[0].country + ' ' + address[0].region + ' ' + address[0].street + ' ' + address[0].name
+    this.setState({address:addressKr});
   }
 
 
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
-    // this.fuckingRendering();
     return(
       <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
         <ScrollView 
