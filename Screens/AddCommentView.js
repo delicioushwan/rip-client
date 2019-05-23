@@ -10,6 +10,7 @@ class AddCommentView extends Component {
   state = {
     address : 'there is no Address in here',
     comment : '',
+    starCount : 3.5,
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -47,7 +48,12 @@ class AddCommentView extends Component {
     return true;
   }
 
-
+  onStarRatingPress = (rating) => {
+    this.setState({
+      starCount: rating
+    });
+  }
+ 
   summitComment = () => {
     fetch('http://13.209.131.247:5000/comments',
     {
@@ -57,7 +63,8 @@ class AddCommentView extends Component {
       },
       body: JSON.stringify({
         comment : this.state.comment,
-        toiletId : this.props.navigation.state.params.infos.toiletLocation.id
+        toiletId : this.props.navigation.state.params.infos.toiletLocation.id,
+        starRating : '' + this.state.starCount + this.props.navigation.state.params.infos.toiletLocation.starRating
       }),
     })
     .then(response => console.log('Add Comment Success:',(response)))
@@ -99,7 +106,7 @@ class AddCommentView extends Component {
           </View>
           <View style = {styles.second}>
             <View style = {{padding:15}}>
-              <ToiletStarRating />
+              <ToiletStarRating starPress = {this.onStarRatingPress} starCount = {this.state.starCount}/>
             </View>
           </View>
           <View style = {styles.third}>

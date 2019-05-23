@@ -34,6 +34,7 @@ class AddToiletView extends Component {
     description : '',
     latitude : this.props.navigation.state.params.location.location.latitude,
     longitude : this.props.navigation.state.params.location.location.longitude,
+    starCount : 3.5,
   };
 
   componentDidMount(){
@@ -52,6 +53,12 @@ class AddToiletView extends Component {
     return true;
   }
 
+  onStarRatingPress = (rating) => {
+    this.setState({
+      starCount: rating
+    });
+  }
+
   summit = () => {
     fetch('http://13.209.131.247:5000/toilet',
     {
@@ -63,6 +70,7 @@ class AddToiletView extends Component {
         longitude : this.state.longitude,
         latitude : this.state.latitude,
         address : this.state.locationData, 
+        starRating : '' + this.state.starCount
         // description : this.state.comment
       }),
     })
@@ -87,7 +95,7 @@ class AddToiletView extends Component {
     
   render(){
     let { location } = this.props.navigation.state.params.location
-    console.log('addtoiletview',location)
+    console.log('addtoiletview',this.state)
     return(
     <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
     <MiniMap toiletInfo = {location}></MiniMap>
@@ -98,7 +106,7 @@ class AddToiletView extends Component {
         </View>
         <View style = {styles.second}>
           <View style = {{padding:15}}>
-            <ToiletStarRating />
+            <ToiletStarRating starPress = {this.onStarRatingPress} starCount = {this.state.starCount}/>
           </View>
         </View>
         <View style = {styles.third}>

@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 const ToiletSpot = (props) => {
     const latitude = Number(props.toiletLocation.latitude)
     const longitude = Number(props.toiletLocation.longitude)
+    const starScore = 'SCORE : ' + props.toiletLocation.rating
     const CalulateToMeters = (lat1, lon1, lat2, lon2) => {
         var R = 6378.137;
         var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
@@ -22,6 +23,7 @@ const ToiletSpot = (props) => {
     let lat2 = props.toiletLocation.latitude
     let lon2 = props.toiletLocation.longitude
     let distance = Math.floor(CalulateToMeters(lat1,lon1,lat2,lon2))
+    
     return(
         <MapView.Marker
             coordinate={
@@ -30,7 +32,8 @@ const ToiletSpot = (props) => {
                     longitude:longitude,
                 }
             }
-            title="똥통"
+
+            title= {starScore}
             description={''+distance + 'm'}
             onCalloutPress={() => {
                 props.navigation.navigate("AddComment",{"infos" : props})}}
