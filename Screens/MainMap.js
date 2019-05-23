@@ -12,19 +12,32 @@ let { width, height } = Dimensions.get('window')
 export default class MainMap extends Component {
   state = {
     locationResult: null,
-    location: {coords: { latitude: 37.78825, longitude: -122.4324}},
+    location: {coords: { latitude: 37.78825, longitude: 122.4324}},
     address: 'there is no address',
     toilet : [],
   };
 
   componentDidMount() {
-    this._getLocationAsync();
-    this.fetchData();
+    this.getData()
+  }
+
+  getData = async() => {
+    await this._getLocationAsync()
+    await this.fetchData()
   }
 
   fetchData = async () => {
-    // const response  = await fetch('https://my-json-server.typicode.com/choi8686/fakeserver/toilet')
-    const response  = await fetch('http://13.209.131.247:5000/toilet')
+    const response  = await fetch('http://13.209.131.247:5000/toilet',
+    {
+      method : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body : JSON.stringify({
+        latitude : this.state.location.coords.latitude,
+        longitude : this.state.location.coords.longitude  
+      })
+    })
     const json = await response.json();
     this.setState({toilet : json})
   }
