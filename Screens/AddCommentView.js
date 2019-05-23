@@ -78,7 +78,6 @@ class AddCommentView extends Component {
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
     // this.fuckingRendering();
-    console.log('addcommentview',toiletLocation)
     return(
       <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
         <ScrollView 
@@ -104,7 +103,6 @@ class AddCommentView extends Component {
                 style={{height:100}}
               >
                 {toiletLocation.comments.map((toilet,index)=>{
-                  {console.log(toilet.comment)}
                   return <Text key={index} flexWrap='wrap' style = {styles.commentStyle}>{toilet.comment}</Text>
                 })}
               </ScrollView>

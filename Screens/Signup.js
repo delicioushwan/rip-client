@@ -150,14 +150,10 @@ export default class SignUp extends React.Component {
                           this._errorMessages() &&
                           this._submit()
                         }}
-                        // onPress={this._errorMessages}
-                        // onPress={this._submit}
-
                     >                
                     <Text style={style.submit}>SIGN UP</Text>
                     </TouchableOpacity>
-                    <Modal
-                        
+                    <Modal                        
                         animationType="slide"
                         transparent={true}
                         visible={this.state.modalVisible}
@@ -166,7 +162,7 @@ export default class SignUp extends React.Component {
                         }}>
                         <View style = {style.modalStyle}>
                           <View style = {style.inModalStyle}>
-                            <Text  style={{color: 'white', fontSize : 15, fontWeight: 'bold', padding : 15}}> Check your E-mail or Password </Text>
+                            <Text  style={{color: 'black', fontSize : 15, fontWeight: 'bold', padding : 15}}> The ID is already existent </Text>
                             <Button
                               title = ' close '
                               color = "black"
