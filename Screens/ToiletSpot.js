@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 const ToiletSpot = (props) => {
     const latitude = Number(props.toiletLocation.latitude)
     const longitude = Number(props.toiletLocation.longitude)
+    const starScore = 'SCORE : ' + props.toiletLocation.rating
     return(
         <MapView.Marker
             coordinate={
@@ -14,7 +15,7 @@ const ToiletSpot = (props) => {
                     longitude:longitude,
                 }
             }
-            title="똥통"
+            title= {starScore}
             description={props.toiletLocation.description}
             onCalloutPress={() => {
                 props.navigation.navigate("AddComment",{"infos" : props})}}

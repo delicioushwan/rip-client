@@ -4,26 +4,18 @@ import StarRating from 'react-native-star-rating';
 class ToiletStarRating extends Component {
  
   constructor(props) {
-    super(props);
-    this.state = {
-      starCount: 3.5
-    };
-  }
+    super(props);  }
  
-  onStarRatingPress(rating) {
-    this.setState({
-      starCount: rating
-    });
-  }
- 
+
   render() {
+    console.log(this.props)
     return (
       <StarRating
         disabled={false}
         maxStars={5}
         halfStarEnabled = {true}
-        rating={this.state.starCount}
-        selectedStar={(rating) => this.onStarRatingPress(rating)}
+        rating={this.props.starCount}
+        selectedStar={(rating) => this.props.starPress(rating)}
       />
     );
   }
