@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, TextInput, AsyncStorage, Text ,TouchableOpacity, KeyboardAvoidingView, Modal, Button, TouchableHighlight} from 'react-native';
+import { View, TextInput, AsyncStorage, Text ,TouchableOpacity, KeyboardAvoidingView, Modal, Button, StyleSheet} from 'react-native';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded
+} from "expo";
 import BackButton from '../componets/BackButton'
 import { Ionicons } from '@expo/vector-icons';
 import style from '../css'
@@ -90,69 +96,86 @@ export default class SignIn extends React.Component {
         this.setState({modalVisible: visible});
     }
 
-    render(){
-        return(
-            <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
-                <View style={style.backbutton}><BackButton navigation={this.props.navigation} /></View>
-                <View style={style.inputTag}>
-                    <Text style={style.inputText} >USER ID (Email Address)</Text>
-                    <TextInput
-                        style={style.emailInput}
-                        placeholder=" Email Address"
-                        onChangeText={(text) => this._changeErr('email','errorEmail',text)}
-                    />
-                    {this._errorMsg("errorEmail")}
-                    <Text style={style.inputText} >PASSWORD</Text>
-                    <TextInput
-                        style={style.passwordInput}
-                        placeholder=" Password"
-                        secureTextEntry={true}
-                        onChangeText={(text) => this._changeErr('password','errorPassword',text)}
-                    />
-                    {this._errorMsg("errorPassword")}
-                    <TouchableOpacity
-                        style={style.signinButton}
-                        onPress={() => {
-                            this._errorMessages() &&
-                            this._submit();}
-                        }
-                        // onPress={this._errorMessages}
-                        // onPress={this._submit}
-                        // onPress={this._signInAsync}
-                    >                
-                       <Text style={style.submit}><Ionicons
-                        name="md-lock"
-                        size={60}
-                        color="black"
-                        /> SIGN IN</Text>
-                    </TouchableOpacity>
-                    <Modal
-                        
-                        animationType="slide"
-                        transparent={true}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => {
-                          Alert.alert('Modal has been closed.');
-                        }}>
-                        <View style = {style.modalStyle}>
-                          <View style = {style.inModalStyle}>
-                            <Text  style={{color: 'black', fontSize : 15, fontWeight: 'bold', padding : 15}}> Check your E-mail or Password </Text>
-                            <Button
-                              title = ' close '
-                              color = "black"
-                              onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible);
-                              }}>
-                              <Text> OK </Text>
-                            </Button>
-                          </View>
-                        </View>
-                    </Modal>
-                </View>
-            </KeyboardAvoidingView>    
-        )
-    
+    bannerError() {
+      console.log("An error");
+      return;
     }
 
- 
+    render(){
+      return(
+        <KeyboardAvoidingView style={style.container} behavior="padding" enabled>             
+          <View style={style.backbutton}><BackButton navigation={this.props.navigation} /></View>
+            <AdMobBanner
+              bannerSize="fullBanner"
+              adUnitID="ca-app-pub-3940256099942544/6300978111"
+              // Test ID, Replace with your-admob-unit-id
+              testDeviceID="EMULATOR"
+              didFailToReceiveAdWithError={this.bannerError}
+            />
+            <View style={style.inputTag}>
+              <Text style={style.inputText} >USER ID (Email Address)</Text>
+              <TextInput
+                  style={style.emailInput}
+                  placeholder=" Email Address"
+                  onChangeText={(text) => this._changeErr('email','errorEmail',text)}
+              />
+              {this._errorMsg("errorEmail")}
+              <Text style={style.inputText} >PASSWORD</Text>
+              <TextInput
+                  style={style.passwordInput}
+                  placeholder=" Password"
+                  secureTextEntry={true}
+                  onChangeText={(text) => this._changeErr('password','errorPassword',text)}
+              />
+              {this._errorMsg("errorPassword")}
+              <TouchableOpacity
+                style={style.signinButton}
+                onPress={() => {
+                    this._errorMessages() &&
+                    this._submit();}
+                }
+                // onPress={this._errorMessages}
+                // onPress={this._submit}
+                // onPress={this._signInAsync}
+              >                
+                <Text style={style.submit}>
+                  <Ionicons
+                  name="md-lock"
+                  size={60}
+                  color="black"
+                  /> SIGN IN
+                </Text>
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {
+                  Alert.alert('Modal has been closed.');
+                }}
+              >
+                <View style = {style.modalStyle}>
+                  <View style = {style.inModalStyle}>
+                    <Text  style={{color: 'black', fontSize : 15, fontWeight: 'bold', padding : 15}}> Check your E-mail or Password </Text>
+                    <Button
+                      title = ' close '
+                      color = "black"
+                      onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                      }}>
+                      <Text> OK </Text>
+                    </Button>
+                  </View>
+                </View>
+              </Modal>
+            </View>
+          <PublisherBanner
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            testDeviceID="EMULATOR"
+            onDidFailToReceiveAdWithError={this.bannerError}
+            onAdMobDispatchAppEvent={this.adMobEvent} />
+        </KeyboardAvoidingView>    
+      )
+    }
 }

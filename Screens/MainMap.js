@@ -97,7 +97,7 @@ export default class MainMap extends Component {
             >
             <MapView.Marker
             coordinate={this.state.location.coords}
-            title="똥마려 Wanna take shit"
+            title="똥마려 Wanna take shits"
             description="큰일이다!!"
             >
               <Image source={require('../assets/poop.png')}/>
