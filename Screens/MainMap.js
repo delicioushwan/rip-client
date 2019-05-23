@@ -76,7 +76,6 @@ export default class MainMap extends Component {
     let location = await Location.getCurrentPositionAsync({});
     this.setState(
       {
-        // locationResult: JSON.stringify(location),
         location
       }
     );
@@ -104,7 +103,7 @@ export default class MainMap extends Component {
             </MapView.Marker>
             {this.state.toilet.map(
               (toiletLocation,index)=>{
-                return <ToiletSpot key ={index} number={index} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
+                return <ToiletSpot key ={index} number={index} currentLocation={this.state.location.coords} toiletLocation={toiletLocation} navigation = {this.props.navigation}></ToiletSpot>
               }
             )}
             </MapView>
