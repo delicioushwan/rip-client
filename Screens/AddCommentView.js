@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, KeyboardAvoidingView, ScrollView, Image } from 'react-native';
+import { Text, View, TextInput, Button, KeyboardAvoidingView, ScrollView, Image, BackHandler } from 'react-native';
 import { Location, Permissions } from 'expo';
 import ToiletStarRating from '../componets/starRating'
 import styles from './addStyle'
@@ -35,6 +35,15 @@ class AddCommentView extends Component {
     this.props.navigation.setParams({
       summitComment:this.summitComment
     })
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.props.navigation.navigate('Home') // works best when the goBack is async
+    return true;
   }
 
 
