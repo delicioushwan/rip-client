@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TextInput, Button, KeyboardAvoidingView, BackHandler } from 'react-native';
 import ToiletStarRating from '../componets/starRating'
 import styles from './addStyle'
 import BackButton from '../componets/BackButton'
@@ -41,6 +41,15 @@ class AddToiletView extends Component {
       summit:this.summit,
       summitComment:this.summitComment
     })
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.props.navigation.navigate('Home') // works best when the goBack is async
+    return true;
   }
 
   summit = () => {
