@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, AsyncStorage, Text ,TouchableOpacity, KeyboardAvoidingView, Modal, Button, StyleSheet} from 'react-native';
+import { View, TextInput, AsyncStorage, Text ,TouchableOpacity, KeyboardAvoidingView, Modal, Button } from 'react-native';
 import {
   AdMobBanner,
   AdMobInterstitial,

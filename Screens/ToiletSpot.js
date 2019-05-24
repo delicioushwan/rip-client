@@ -11,7 +11,6 @@ const ToiletSpot = (props) => {
     starStr.split('x').map(i => { if(i.length > 0){tempArr.push(Number(i))}});
     const starAvg = tempArr.reduce((acc, curV) => acc + curV) / (tempArr).length + '';
     const starScore = 'Rating : ' + (starAvg.slice(0,4) || 0)
-    console.log(starScore)
     return(
         <MapView.Marker
             coordinate={
