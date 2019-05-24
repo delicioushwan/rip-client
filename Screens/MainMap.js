@@ -20,10 +20,11 @@ let { width, height } = Dimensions.get('window')
 export default class MainMap extends Component {
   state = {
     locationResult: null,
-    location: {coords: { latitude: 37.78825, longitude: 122.4324}},
+    location: {coords: { latitude: 37.78825, longitude: 122.4324 }},
     address: 'there is no address',
     toilet : [],
-    inputStatus : false
+    inputStatus : false,
+    currentspot:{coords: { latitude: 37.78825, longitude: 122.4324 }}
   };
 
   componentDidMount() {
@@ -50,10 +51,6 @@ export default class MainMap extends Component {
     const json = await response.json();
     this.setState({toilet : json})
   }
-
-  _handleMapRegionChange = currentLocation => {
-    this.setState({ currentLocation });
-  };
 
   _getReverseGeocodeAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -85,7 +82,8 @@ export default class MainMap extends Component {
     let location = await Location.getCurrentPositionAsync({});
     this.setState(
       {
-        location
+        location,
+        currentspot : location
       }
     );
   };
@@ -159,6 +157,12 @@ export default class MainMap extends Component {
               }
               onChangeText={(text) => this.setState({text})}
               value = {this.state.text}
+              onSubmitEditing={()=> {
+                this._inputToggle() 
+                this.state.inputStatus ?
+                (this._getLocationForSearching(this.state.text))
+                 : console.log('hi')
+              }}
               />
               <Ionicons
               style={
@@ -169,8 +173,7 @@ export default class MainMap extends Component {
                 onPress={()=> {
                   this._inputToggle() 
                   this.state.inputStatus ?
-                  (this._getLocationForSearching(this.state.text),
-                  this.fetchData())
+                  (this._getLocationForSearching(this.state.text))
                    : console.log('hi')
                 }
               }
@@ -190,7 +193,7 @@ export default class MainMap extends Component {
             onRegionChangeComplete={(data)=>{this._trackingMap(data)}}
             >
             <MapView.Marker
-            coordinate={this.state.location.coords}
+            coordinate={this.state.currentspot.coords}
             title="똥마려 Wanna take shits"
             description="큰일이다!!"
             >
@@ -217,7 +220,7 @@ export default class MainMap extends Component {
               }}>
               <Ionicons
                 onPress={()=> {
-                  this._handleMapRegionChange() 
+                  this.getData() 
                   }}
                 name="md-locate"
                 size={36.22}
@@ -237,9 +240,8 @@ export default class MainMap extends Component {
                 bottom : 0
               }}
                 bannerSize="fullBanner"
-                adUnitID="ca-app-pub-3940256099942544/6300978111"
+                adUnitID="ca-app-pub-5860557805372655/4128520611"
                 // Test ID, Replace with your-admob-unit-id
-                testDeviceID="EMULATOR"
                 didFailToReceiveAdWithError={this.bannerError}
               ></AdMobBanner>
         </View>

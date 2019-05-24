@@ -28,8 +28,6 @@ export default class MiniMap extends Component {
         >
         <MapView.Marker
           coordinate={coords}
-          title="get props"
-          description="get props"
         >
         </MapView.Marker>
         </MapView>
