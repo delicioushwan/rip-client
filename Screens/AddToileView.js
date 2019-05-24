@@ -70,7 +70,7 @@ class AddToiletView extends Component {
         longitude : this.state.longitude,
         latitude : this.state.latitude,
         address : this.state.locationData, 
-        starRating : '' + this.state.starCount
+        rating : '' + this.state.starCount
         // description : this.state.comment
       }),
     })

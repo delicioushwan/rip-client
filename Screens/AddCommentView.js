@@ -20,6 +20,7 @@ class AddCommentView extends Component {
         <Button
           onPress={()=>{
             navigation.getParam('summitComment')() ;
+            navigation.getParam('sendStarRating')() ;
             navigation.navigate('Home') ;
           }}
           title="Submit"
@@ -34,7 +35,8 @@ class AddCommentView extends Component {
 
   componentDidMount(){
     this.props.navigation.setParams({
-      summitComment:this.summitComment
+      summitComment:this.summitComment,
+      sendStarRating:this.sendStarRating
     })
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     this._getReverseGeocodeAsync()
@@ -64,10 +66,26 @@ class AddCommentView extends Component {
       body: JSON.stringify({
         comment : this.state.comment,
         toiletId : this.props.navigation.state.params.infos.toiletLocation.id,
-        starRating : '' + this.state.starCount + this.props.navigation.state.params.infos.toiletLocation.starRating
       }),
     })
     .then(response => console.log('Add Comment Success:',(response)))
+    .catch(error => console.error('Error:', error));
+  }
+
+  sendStarRating = () => {
+    let starCount = this.state.starCount + 'x'
+    console.log(starCount)
+    fetch(`http://13.209.131.247:5000/toilet/${this.props.navigation.state.params.infos.toiletLocation.id}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        rating : starCount
+      }),
+    })
+    .then(response => console.log('Add Rating Success:',(response)))
     .catch(error => console.error('Error:', error));
   }
 
@@ -91,6 +109,7 @@ class AddCommentView extends Component {
 
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
+    console.log("------starcount : ",this.state.starCount)
     return(
       <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
         <ScrollView 
