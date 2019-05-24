@@ -8,7 +8,6 @@ let { width, height } = Dimensions.get('window')
 export default class MiniMap extends Component {
 
   render() {
-    // console.log(this)
     let { toiletInfo } = this.props
     let coords = {
       latitude: Number(toiletInfo.latitude),
