@@ -8,7 +8,6 @@ class ToiletStarRating extends Component {
  
 
   render() {
-    console.log(this.props)
     return (
       <StarRating
         disabled={false}
