@@ -6,6 +6,13 @@ import MenuButton from '../componets/MenuButton'
 import AddButton from '../componets/AddButton'
 import { Ionicons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded
+} from "expo";
+
 
 let { width, height } = Dimensions.get('window')
 
@@ -108,6 +115,23 @@ export default class MainMap extends Component {
       }
     )
   }
+
+  _trackingMap= async(data) => {
+    let location = data
+    let coords = {
+      latitude: Number(location.latitude.toFixed(5)),
+      longitude: Number(location.longitude.toFixed(5))
+    }
+    this.setState(
+      {
+        location:{
+          coords:coords
+        },
+      }
+    )
+    await this.fetchData()
+  }
+
   render() {
     return (
         <View style={styles.container}>
@@ -154,10 +178,6 @@ export default class MainMap extends Component {
                 size={40}
               />
             </View>
-        
-
-
-
             <MapView
             style={{ alignSelf: 'stretch', height: '100%' }}
             region={
@@ -167,6 +187,7 @@ export default class MainMap extends Component {
                 latitudeDelta: 0.01, longitudeDelta: 0.01*(width/height)
                 }
             }
+            onRegionChangeComplete={(data)=>{this._trackingMap(data)}}
             >
             <MapView.Marker
             coordinate={this.state.location.coords}
@@ -192,7 +213,7 @@ export default class MainMap extends Component {
                 justifyContent:'space-between',
                 paddingRight: 30,
                 paddingLeft: 30,
-                bottom : 30
+                bottom : 70
               }}>
               <Ionicons
                 onPress={()=> {
@@ -208,6 +229,19 @@ export default class MainMap extends Component {
                 getAddress = {this._getReverseGeocodeAsync} 
                 />
             </View>
+            <AdMobBanner
+            style={
+              {
+                width : '100%',
+                position: 'absolute',
+                bottom : 0
+              }}
+                bannerSize="fullBanner"
+                adUnitID="ca-app-pub-3940256099942544/6300978111"
+                // Test ID, Replace with your-admob-unit-id
+                testDeviceID="EMULATOR"
+                didFailToReceiveAdWithError={this.bannerError}
+              ></AdMobBanner>
         </View>
     );
   }

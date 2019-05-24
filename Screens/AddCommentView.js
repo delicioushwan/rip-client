@@ -74,7 +74,6 @@ class AddCommentView extends Component {
 
   sendStarRating = () => {
     let starCount = this.state.starCount + 'x'
-    console.log(starCount)
     fetch(`http://13.209.131.247:5000/toilet/${this.props.navigation.state.params.infos.toiletLocation.id}`,
     {
       method: 'PUT',
@@ -109,7 +108,6 @@ class AddCommentView extends Component {
 
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
-    console.log("------starcount : ",this.state.starCount)
     return(
       <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
         <ScrollView 
