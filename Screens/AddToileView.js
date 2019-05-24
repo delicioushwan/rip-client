@@ -95,7 +95,6 @@ class AddToiletView extends Component {
     
   render(){
     let { location } = this.props.navigation.state.params.location
-    console.log('addtoiletview',this.state)
     return(
     <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
     <MiniMap toiletInfo = {location}></MiniMap>

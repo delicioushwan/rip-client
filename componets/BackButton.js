@@ -10,7 +10,6 @@ export default class BackButton extends React.Component{
                 color="#000000"
                 size={32}
                 onPress={()=> {
-                    console.log(this.props)
                     return this.props.navigation.navigate('Home')}
                 }
             />
