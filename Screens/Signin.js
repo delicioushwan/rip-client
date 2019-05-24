@@ -107,9 +107,8 @@ export default class SignIn extends React.Component {
           <View style={style.backbutton}><BackButton navigation={this.props.navigation} /></View>
             <AdMobBanner
               bannerSize="fullBanner"
-              adUnitID="ca-app-pub-3940256099942544/6300978111"
+              adUnitID="ca-app-pub-5860557805372655/6946255641"
               // Test ID, Replace with your-admob-unit-id
-              testDeviceID="EMULATOR"
               didFailToReceiveAdWithError={this.bannerError}
             />
             <View style={style.inputTag}>
@@ -171,8 +170,7 @@ export default class SignIn extends React.Component {
             </View>
           <PublisherBanner
             bannerSize="fullBanner"
-            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
-            testDeviceID="EMULATOR"
+            adUnitID="ca-app-pub-5860557805372655/1045517114" // Test ID, Replace with your-admob-unit-id
             onDidFailToReceiveAdWithError={this.bannerError}
             onAdMobDispatchAppEvent={this.adMobEvent} />
         </KeyboardAvoidingView>    
