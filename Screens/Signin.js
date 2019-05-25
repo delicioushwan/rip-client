@@ -96,8 +96,8 @@ export default class SignIn extends React.Component {
         this.setState({modalVisible: visible});
     }
 
-    bannerError() {
-      console.log("An error");
+    bannerError(err) {
+      console.log(err);
       return;
     }
 
@@ -106,11 +106,10 @@ export default class SignIn extends React.Component {
         <KeyboardAvoidingView style={style.container} behavior="padding" enabled>             
           <View style={style.backbutton}><BackButton navigation={this.props.navigation} /></View>
             <AdMobBanner
-              bannerSize="fullBanner"
+              bannerSize="smartBannerPortrait"
               adUnitID="ca-app-pub-5860557805372655/6946255641"
-              // Test ID, Replace with your-admob-unit-id
-              didFailToReceiveAdWithError={this.bannerError}
-            />
+              onDidFailToReceiveAdWithError={this.bannerError}
+              />
             <View style={style.inputTag}>
               <Text style={style.inputText} >USER ID (Email Address)</Text>
               <TextInput
@@ -170,7 +169,7 @@ export default class SignIn extends React.Component {
             </View>
           <PublisherBanner
             bannerSize="fullBanner"
-            adUnitID="ca-app-pub-5860557805372655/1045517114" // Test ID, Replace with your-admob-unit-id
+            adUnitID="ca-app-pub-5860557805372655/1045517114"
             onDidFailToReceiveAdWithError={this.bannerError}
             onAdMobDispatchAppEvent={this.adMobEvent} />
         </KeyboardAvoidingView>    
