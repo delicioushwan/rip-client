@@ -57,6 +57,7 @@ class AddCommentView extends Component {
   }
  
   summitComment = () => {
+    
     fetch('http://13.209.131.247:5000/comments',
     {
       method: 'POST',
@@ -133,7 +134,9 @@ class AddCommentView extends Component {
                 style={{height:100}}
               >
                 {toiletLocation.comments.reverse().map((toilet,index)=>{
-                  return <Text key={index} flexWrap='wrap' style = {styles.commentStyle}>{toilet.comment}</Text>
+                  if(toilet.comment.length > 0){
+                    return <Text key={index} flexWrap='wrap' style = {styles.commentStyle}>{toilet.comment}</Text>
+                  }
                 })}
               </ScrollView>
               <TextInput style = {styles.inputStyle}
