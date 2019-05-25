@@ -33,9 +33,6 @@ const styles = StyleSheet.create({
         flex: 2,
         padding : 20,
         borderTopWidth : 5,
-        // backgroundColor: 'blue',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     commentBox : {
         flex : 1,
@@ -50,6 +47,21 @@ const styles = StyleSheet.create({
     commentStyle : {
         padding : 5,
         fontSize : 15.64,
+    },
+    modalStyle : {
+        flex : 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inModalStyle : {
+        height : "22.222%",
+        width : "71.242%",
+        borderColor: 'black',
+        borderWidth: 1.2,
+        borderStyle: 'solid',
+        backgroundColor : "white",
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 
