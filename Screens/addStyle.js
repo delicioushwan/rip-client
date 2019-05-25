@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
       borderTopWidth : 5,
     },
     first: {
-        flex: 1,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
         borderTopWidth : 5,

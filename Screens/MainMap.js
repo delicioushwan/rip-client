@@ -131,6 +131,7 @@ export default class MainMap extends Component {
   }
 
   render() {
+    console.log("mainmap",this.state)
     return (
         <View style={styles.container}>
           <View style={
@@ -241,7 +242,6 @@ export default class MainMap extends Component {
               }}
                 bannerSize="fullBanner"
                 adUnitID="ca-app-pub-5860557805372655/4128520611"
-                // Test ID, Replace with your-admob-unit-id
                 didFailToReceiveAdWithError={this.bannerError}
               ></AdMobBanner>
         </View>
