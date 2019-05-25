@@ -7,7 +7,7 @@
     "platforms": [
       "android"
     ],
-    "version": "1.2.0",
+    "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets/RIP.png",
     "splash": {
@@ -23,7 +23,7 @@
     ],
     "android": {
       "package": "com.seunghwanseokjae.seunghwan",
-      "versionCode":3
+      "versionCode":4
     }
   }
 }

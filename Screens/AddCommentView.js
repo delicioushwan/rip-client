@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, KeyboardAvoidingView, ScrollView, Image, BackHandler } from 'react-native';
+import { Text, View, TextInput, Button, KeyboardAvoidingView, ScrollView, Modal, BackHandler, AsyncStorage } from 'react-native';
 import { Location, Permissions } from 'expo';
 import ToiletStarRating from '../componets/starRating'
 import styles from './addStyle'
@@ -11,17 +11,17 @@ class AddCommentView extends Component {
     address : 'there is no Address in here',
     comment : '',
     starCount : 3.5,
+    modalVisible: false,
   }
 
   static navigationOptions = ({ navigation }) => {
+    console.log(navigation)
     return{
       headerTitle: 'Add Comments',
       headerRight: (
         <Button
           onPress={()=>{
-            navigation.getParam('summitComment')() ;
-            navigation.getParam('sendStarRating')() ;
-            navigation.navigate('Home') ;
+            navigation.getParam('_submitChain')()
           }}
           title="Submit"
           color="black"
@@ -35,8 +35,7 @@ class AddCommentView extends Component {
 
   componentDidMount(){
     this.props.navigation.setParams({
-      summitComment:this.summitComment,
-      sendStarRating:this.sendStarRating
+      _submitChain:this._submitChain
     })
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     this._getReverseGeocodeAsync()
@@ -106,9 +105,30 @@ class AddCommentView extends Component {
     this.setState({address:addressKr});
   }
 
+  _submitChain = async () => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    userToken === 'aasertetdbc' ? (
+    this.summitComment(),
+    this.sendStarRating() ,
+    this.props.navigation.navigate('Home') ) : this.setModalVisible(true);
+
+  }
+
+  _checkLogin = async () => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    console.log('*******************',userToken)
+    return userToken
+  };
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
+
 
   render(){
     let { toiletLocation } = this.props.navigation.state.params.infos
+    // this._checkLogin()
     return(
       <KeyboardAvoidingView style={styles.zero} behavior="padding" enabled>
         <View 
@@ -147,7 +167,29 @@ class AddCommentView extends Component {
               />
             </View>
           </View>
-        </View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}
+        >
+          <View style = {styles.modalStyle}>
+            <View style = {styles.inModalStyle}>
+              <Text  style={{color: 'black', fontSize : 15, fontWeight: 'bold', padding : 15}}> You need to sign in! </Text>
+              <Button
+                title = ' close '
+                color = "black"
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text> OK </Text>
+              </Button>
+            </View>
+          </View>
+        </Modal>
+      </View>
       </KeyboardAvoidingView>
     )
   }

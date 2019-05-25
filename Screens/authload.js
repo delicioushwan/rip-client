@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar, AsyncStorage, ActivityIndicator ,TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 
 
 
