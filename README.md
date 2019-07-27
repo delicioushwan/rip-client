@@ -4,3 +4,10 @@
 
 
 <img src="./images-description/화장실1.PNG" alt=''/>
+
+<div>
+  <img src="./images-description/화장실2.PNG" alt=''/>
+  <img src="./images-description/화장실3.PNG" alt=''/>
+  <img src="./images-description/화장실4.PNG" alt=''/>
+  <img src="./images-description/화장실5.PNG" alt=''/>
+ </div>
