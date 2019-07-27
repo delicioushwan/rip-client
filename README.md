@@ -5,9 +5,9 @@
 
 <img src="./images-description/화장실1.PNG" alt=''/>
 
-<div display="inline-block">
-  <img src="./images-description/화장실2.PNG" alt=''/>
-  <img src="./images-description/화장실3.PNG" alt=''/>
-  <img src="./images-description/화장실4.PNG" alt=''/>
-  <img src="./images-description/화장실5.PNG" alt=''/>
+<div>
+  <img src="./images-description/화장실2.PNG" width="25%" alt=''/>
+  <img src="./images-description/화장실3.PNG" width="25%" alt=''/>
+  <img src="./images-description/화장실4.PNG" width="25%" alt=''/>
+  <img src="./images-description/화장실5.PNG" width="25%" alt=''/>
  </div>
