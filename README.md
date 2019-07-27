@@ -4,7 +4,8 @@
 
 
 <img src="./images-description/화장실1.PNG" alt=''/>
-내주변 또는 지도를 이동하여 지도중심에서 반경 200M이내의 화장실을 찾을수 있다.<br>
+내주변 또는 지도를 이동하여 지도중심에서 반경 200M이내의 화장실을 찾을수 있다.
+<br><br><br><br><br>
 
 <div>
   <img src="./images-description/화장실2.PNG" width="23%" alt=''/>
