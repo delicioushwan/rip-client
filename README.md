@@ -1,8 +1,8 @@
 # rip-client
 
-화장실찾기 안드로이드앱(2019.05.13 ~ 2019.05.25 (약 2주))
+## 화장실찾기 안드로이드앱(2019.05.13 ~ 2019.05.25 (약 2주))
 
-ReactNative, Expo, Node.js, Express.js, MySQL, Sequelize.js, Passport, AWS
+### ReactNative, Expo, Node.js, Express.js, MySQL, Sequelize.js, Passport, AWS
 
 
 플레이 스토어<a href="https://play.google.com/store/apps/details?id=com.seunghwanseokjae.seunghwan&hl=ko"> 바로가기 </a>
