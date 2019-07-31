@@ -7,6 +7,7 @@
 ### ReactNative, Expo, Node.js, Express.js, MySQL, Sequelize.js, Passport, AWS<br>
 <br>
 내 주변(혹은 검색 지점)에 위치한 공공 혹은 개방형 화장실을 찾아 지도 위에 나타나는 앱으로 google map기반으로, 단순 데이터를 뿌리는 것 만이 아닌, 등록되지 않은 지점의 화장실을 추가하고, 등록된 화장실들에 별점과 코멘트를 추가할 수 있는 기능을 구현<br><br>
+
 ### 플레이 스토어<a href="https://play.google.com/store/apps/details?id=com.seunghwanseokjae.seunghwan&hl=ko"> 바로가기 </a><br>
 <br>
 
